@@ -40,8 +40,8 @@ Sebuah dashboard sistem Point of Sale (POS) berbasis web, dibuat dengan **React*
 1. **Clone repo ini:**
 
 ```bash
-git clone https://github.com/username/pos-dashboard.git
-cd pos-dashboard
+git clone https://github.com/adityaridhon/pos
+cd pos
 ```
 
 2. **Instal Depedensi:**
