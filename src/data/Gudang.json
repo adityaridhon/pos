@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Kopi Arabika", "stock": 120, "category": "Biji Kopi" },
+  { "id": 2, "name": "Kopi Robusta", "stock": 75, "category": "Biji Kopi" },
+  { "id": 3, "name": "Susu UHT", "stock": 40, "category": "Campuran" },
+  { "id": 4, "name": "Gula Pasir", "stock": 60, "category": "Campuran" }
+]

@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Andi", "role": "Barista", "shift": "Pagi" },
+  { "id": 2, "name": "Budi", "role": "Kasir", "shift": "Siang" },
+  { "id": 3, "name": "Cici", "role": "Manager", "shift": "Pagi" },
+  { "id": 4, "name": "Dina", "role": "Barista", "shift": "Malam" }
+]
