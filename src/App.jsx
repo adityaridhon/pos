@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard"
 import Kasir from "./components/Kasir"
 import Karyawan from "./components/Karyawan"
 import Gudang from "./components/Gudang"
+import Presensi from "./components/Presensi"
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
         <div className="flex-1 p-4 overflow-y-auto">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/Kasir" element={<Kasir />} />
-            <Route path="/Karyawan" element={<Karyawan />} />
-            <Route path="/Gudang" element={<Gudang />} />
+            <Route path="/kasir" element={<Kasir />} />
+            <Route path="/karyawan" element={<Karyawan />} />
+            <Route path="/gudang" element={<Gudang />} />
+            <Route path="/presensi" element={<Presensi />} />
           </Routes>
         </div>
       </div>

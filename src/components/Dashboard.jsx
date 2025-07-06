@@ -9,10 +9,10 @@ export default function Dashboard() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <DashboardCard title="Karyawan" value={12}  icon={<FaUsers />} color="bg-amber-300" />
-        <DashboardCard title="Produk Gudang" value={54} icon={<FaBoxOpen />} color="bg-amber-700"/>
-        <DashboardCard title="Transaksi Hari Ini" value={17} icon={<FaCashRegister />} />
-        <DashboardCard title="Pendapatan Hari Ini" value={`Rp${(1720000).toLocaleString()}`} icon={<FaMoneyBillWave />} color="bg-green-500"/>
+        <DashboardCard path="karyawan" title="Karyawan" value={12}  icon={<FaUsers />} color="bg-amber-300" />
+        <DashboardCard path="gudang" title="Produk Gudang" value={54} icon={<FaBoxOpen />} color="bg-amber-700"/>
+        <DashboardCard path="" title="Transaksi Hari Ini" value={17} icon={<FaCashRegister />} />
+        <DashboardCard path="gudang" title="Pendapatan Hari Ini" value={`Rp${(1720000).toLocaleString()}`} icon={<FaMoneyBillWave />} color="bg-green-500"/>
       </div>
 
       {/* Chart */}

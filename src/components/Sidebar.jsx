@@ -1,25 +1,42 @@
 import { Link, useLocation } from "react-router-dom"
 import { useState } from "react"
 import {
-  FaBars,
   FaHome,
   FaCashRegister,
   FaUserTie,
   FaWarehouse,
+  FaClipboardList,
+  FaArrowCircleDown,
+  FaArrowCircleUp,
+  FaRegUser,
+  FaChevronRight,
   FaChevronLeft,
-  FaChevronRight
+  FaChevronUp,
+  FaChevronDown
 } from "react-icons/fa"
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(true)
   const location = useLocation()
+  const [isGudangOpen, setIsGudangOpen] = useState(false)
+
 
   const menu = [
     { name: "Dashboard", path: "/", icon: <FaHome /> },
     { name: "Kasir", path: "/kasir", icon: <FaCashRegister /> },
     { name: "Manajemen Karyawan", path: "/karyawan", icon: <FaUserTie /> },
-    { name: "Manajemen Gudang", path: "/gudang", icon: <FaWarehouse /> }
+    {
+      name: "Manajemen Gudang",
+      icon: <FaWarehouse />,
+      children: [
+        { name: "Stok Barang", path: "/gudang/stok", icon: <FaClipboardList /> },
+        { name: "Barang Masuk", path: "/gudang/masuk", icon: <FaArrowCircleDown /> },
+        { name: "Barang Keluar", path: "/gudang/keluar", icon: <FaArrowCircleUp /> }
+      ]
+    },
+    { name: "Presensi", path: "/presensi", icon: <FaRegUser /> },
   ]
+  
 
   return (
     <div
@@ -41,26 +58,69 @@ export default function Sidebar() {
 
       {/* Navigation */}
       <nav className="flex-1 p-2 mt-2">
-        {menu.map((item) => (
-          <Link
-            key={item.path}
-            to={item.path}
-            className={`flex items-center gap-3 px-3.5 py-2 my-2 rounded transition-all ${
-              location.pathname === item.path
-                ? "bg-white text-blue-800 font-semibold"
-                : "hover:bg-gray-700/40"
-            }`}
-          >
-            <span className="text-lg">{item.icon}</span>
-            <span
-              className={`whitespace-nowrap transition-opacity duration-300 ease-in-out ${
-                isOpen ? "opacity-100 ml-1" : "opacity-0 ml-0"
-              }`}
-            >
-              {item.name}
-            </span>
-          </Link>
-        ))}
+      {menu.map((item, i) => {
+        if (item.children) {
+          return (
+            <div key={i}>
+            <button
+        onClick={() => setIsGudangOpen(!isGudangOpen)}
+        className={`flex items-center justify-between gap-3 w-full text-left px-3 py-2 rounded transition ${
+          location.pathname.startsWith("/gudang")
+            ? "bg-blue-600 font-semibold"
+            : "hover:bg-gray-700"
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <span className="text-lg">{item.icon}</span>
+          {isOpen && <span>{item.name}</span>}
+        </div>
+        {isOpen && (
+          <span className="ml-auto text-sm">
+            {isGudangOpen ? <FaChevronUp /> : <FaChevronDown />}
+          </span>
+        )}
+      </button>
+
+        {/* Submenu */}
+        {isGudangOpen && isOpen && (
+          <div className="ml-8 mt-1 space-y-1">
+              {item.children.map((subItem, j) => (
+                <Link
+                  key={j}
+                  to={subItem.path}
+                  className={`flex items-center gap-2 text-sm px-3 py-1 rounded transition ${
+                    location.pathname === subItem.path
+                      ? "bg-blue-500 text-white"
+                      : "hover:bg-gray-700 text-gray-300"
+                  }`}
+                >
+                  <span className="text-base">{subItem.icon}</span>
+                  <span>{subItem.name}</span>
+                </Link>
+              ))}
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // render menu biasa
+  return (
+    <Link
+      key={i}
+      to={item.path}
+      className={`flex items-center gap-3 px-3 py-2 my-2 rounded transition ${
+        location.pathname === item.path
+          ? "bg-blue-600 font-semibold"
+          : "hover:bg-gray-700"
+      }`}
+    >
+      <span className="text-lg">{item.icon}</span>
+      {isOpen && <span>{item.name}</span>}
+    </Link>
+  )
+})}
+
       </nav>
     </div>
   )
